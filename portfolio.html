@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfoliX - Professional Portfolio SaaS</title>
+    
+    <link rel="stylesheet" href="portfolio_style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="landingPage" class="saas-landing">
+        <nav class="navbar">
+            <div class="logo">🚀 PortfoliX<span>SaaS</span></div>
+            <button class="nav-btn" onclick="navigateTo('loginPage')">Login</button>
+        </nav>
+        
+        <header class="hero-section">
+            <h1>Create Your Professional Portfolio in <span>Seconds</span></h1>
+            <p>The ultimate SaaS platform for developers, designers, and freelancers to showcase their work and get hired faster.</p>
+            <div class="hero-btns">
+                <button class="cta-primary" onclick="navigateTo('loginPage')">Get Started For Free <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </header>
+
+        <section class="features-grid">
+            <div class="f-card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Instant Generation</h3>
+                <p>Fill in your details and watch your portfolio go live immediately.</p>
+            </div>
+            <div class="f-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>SaaS Analytics</h3>
+                <p>Track your portfolio visitors and link clicks in real-time.</p>
+            </div>
+            <div class="f-card">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <h3>Fully Responsive</h3>
+                <p>Looks stunning on desktops, tablets, and mobile devices.</p>
+            </div>
+        </section>
+
+        <footer class="saas-footer">
+            <p>© 2026 PortfoliX SaaS Platform</p>
+            <p>Developed By <span>Umashankar</span> | Internship Project</p>
+        </footer>
+    </div>
+
+    <div id="loginPage" class="login-container" style="display: none;">
+        <div class="login-box">
+            <div class="back-to-landing" onclick="navigateTo('landingPage')"><i class="fa-solid fa-arrow-left"></i> Back</div>
+            <h2>PortfoliX Account Login</h2>
+            
+            <div class="input-group">
+                <label>SaaS Username / Email</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="email" id="email" placeholder="admin@gmail.com" required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="admin123" required>
+                </div>
+            </div>
+            
+            <button class="login-btn" onclick="handleLogin()">LAUNCH DASHBOARD</button>
+            <button class="autofill-btn" onclick="autoFillDemoCredentials()">
+                <i class="fa-solid fa-bolt-lightning"></i> Auto Fill Demo Access
+            </button>
+            
+            <p id="loginError"></p>
+
+            <div class="demo-credentials-box">
+                <strong>💡 SaaS Reviewer Access:</strong>
+                <div>User: <code>admin@gmail.com</code></div>
+                <div>Pass: <code>admin123</code></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainApp" class="dashboard-wrapper" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-brand">🚀 PortfoliX</div>
+            <ul class="sidebar-menu">
+                <li class="active"><i class="fa-solid fa-gauge"></i> Dashboard</li>
+                <li><i class="fa-solid fa-user-tie"></i> Edit Profile</li>
+                <li><i class="fa-solid fa-briefcase"></i> Projects</li>
+                <li onclick="handleLogout()" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+            </ul>
+            <div class="sidebar-dev-stamp">
+                <p>Logged as: <span>Umashankar</span></p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h2>Welcome Back, Creator! 👑</h2>
+                <div class="action-header-btns">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleDashboardTheme()">
+                        <i class="fa-solid fa-sun" id="themeIcon"></i> <span id="themeText">Light Mode</span>
+                    </button>
+                </div>
+            </header>
+
+            <section class="analytics-row">
+                <div class="stat-card"><h3>1,248</h3><p><i class="fa-solid fa-eye"></i> Portfolio Views</p></div>
+                <div class="stat-card"><h3>84</h3><p><i class="fa-solid fa-paper-plane"></i> Form Submissions</p></div>
+                <div class="stat-card"><h3>94.2%</h3><p><i class="fa-solid fa-bolt"></i> SEO Score</p></div>
+            </section>
+
+            <section class="config-section">
+                <h3>🛠️ Configure Your Live Portfolio Website</h3>
+                
+                <div class="avatar-upload-container">
+                    <div class="avatar-preview-wrapper">
+                        <img id="avatarImg" src="https://via.placeholder.com/150" alt="Profile Picture">
+                    </div>
+                    <div class="avatar-upload-info">
+                        <label for="photoUpload" class="custom-file-upload">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Choose File / Upload Photo
+                        </label>
+                        <input type="file" id="photoUpload" accept="image/*" onchange="previewProfilePhoto(event)">
+                        <p class="upload-hint">Supported formats: JPG, PNG. Max size 2MB.</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="pName" value="Alex Morgan">
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Title</label>
+                        <input type="text" id="pTitle" value="Full Stack Developer & UI Designer">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>About Me Description</label>
+                    <textarea id="pAbout" rows="4">I build high-performance web applications with clean, modern interfaces.</textarea>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Tech Stack Skills (Comma Separated)</label>
+                        <input type="text" id="pSkills" value="HTML, CSS, JavaScript, React, Node.js">
+                    </div>
+                    <div class="form-group">
+                        <label>GitHub Link</label>
+                        <input type="url" id="pGithub" value="https://github.com">
+                    </div>
+                </div>
+
+                <div class="bottom-action-panel">
+                    <button class="save-portfolio-btn" onclick="updateLivePortfolio()">⚡ Deploy Live Changes</button>
+                    <div class="view-download-group">
+                        <button class="preview-trigger-btn" onclick="openPreviewInNewWindow()"><i class="fa-solid fa-eye"></i> Live Preview</button>
+                        <button class="download-print-btn" onclick="printPortfolio()"><i class="fa-solid fa-print"></i> Print / Download PDF</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="workspace-footer">
+                <p>© 2026 PortfoliX SaaS Platform</p>
+                <p>Developed By <span>Umashankar</span> | Internship Project</p>
+            </footer>
+        </main>
+    </div>
+
+    <div id="portfolioPrintArea" style="display:none;">
+        <img id="pfRenderBoxImage" src="https://via.placeholder.com/150" width="150" style="border-radius:50%">
+        <h1 id="pfRenderName">Alex Morgan</h1>
+        <p id="pfRenderTitle">Full Stack Developer</p>
+        <hr>
+        <h4>About Me</h4>
+        <p id="pfRenderAbout"></p>
+        <h4>Skills</h4>
+        <div id="pfRenderSkills"></div>
+        <p>GitHub: <a id="pfRenderGithub" href="#">View Link</a></p>
+    </div>
+
+    <script src="portfolio_script.js"></script>
+</body>
+</html>
